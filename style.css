@@ -38,23 +38,21 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /*--------------------*/
 
 .tableContainer{
-    display: table;
-    border-spacing: 30px;
-    padding: 0 5%;
-}
-
-.tableRow{
-    display: table-row;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
 }
 
 .tableCell{
-    display: table-cell;
-    padding: 15px;
+    display: inline-block;
+    padding: 25px;
     border: solid 5px var(--mainColor);
     color: var(--mainColor);
     border-radius: 35px;
     font-size: 25px;
     text-align: center;
+    width: 45%;
+    margin: 50px 0;
 }
 
 .top{
@@ -70,6 +68,11 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .logo{
     width: 200px;
     margin-left: 120px;
+}
+
+.logo:hover{
+    transition: 0.2s linear;  
+    transform: scale(1.1);
 }
 
 .h1{
@@ -93,9 +96,11 @@ h2{
 h3{
     font-size: 30px;
     margin: 50px 0;
+    color:  var(--mainColor);
 }
 
 .menu{
+    padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -116,11 +121,26 @@ h3{
 .menuCell:hover{
     transition: 0.2s linear;  
     background-color: var(--mainSelectedColor);
-    scale: 1.1;
+    color:white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
-.menuCell:hover a {
-    color:white;
+.menuCellSelected{
+    display: inline-block;
+    flex: 1 1 100px;
+    text-align: center;
+    padding-top: 23px;
+    height: 70px;
+    background-color: white;    
+    color:var(--mainColor);
+    border-top: solid 5px var(--mainColor);
+    border-right: solid 5px var(--mainColor);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: -20px;
+
+    cursor: pointer;
 }
 
 .bottomMenu{
@@ -129,7 +149,7 @@ h3{
 }
 
 .topMenu{
-    background-color:rgb(118, 139, 184);
+    background-color: var(--additionalColor);
 }
 
 .center{
@@ -193,7 +213,8 @@ h3{
 }
 
 body{
-    --mainSelectedColor: rgb(18, 18, 49);
-    --mainColor: rgb(18, 18, 77);
+    --mainSelectedColor: rgb(18, 18, 50);
+    --mainColor: rgb(0, 0, 90);
+    --additionalColor: rgb(116, 142, 197);
     font-family: "Catamaran", sans-serif;
 }

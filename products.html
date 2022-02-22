@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
+<body onload="initProducts()">
   <header class="top">
     <a href="/index.html">
       <img src="/site_images/logo.png" alt="Home" class="logo">
@@ -24,11 +24,11 @@
   </header>
   <nav class="topMenu">
     <ul class="menu">
-      <li class="menuCell"><a class="navLinkSelected" href="/products.html">T-shirts</a></li>
-      <li class="menuCell"><a class="navLink" href="/not_implemented.html">Hoodies</a></li>
-      <li class="menuCell"><a class="navLink" href="/not_implemented.html">Create Your Own</a></li>
-      <li class="menuCell"><a class="navLink" href="/not_implemented.html">About Us</a></li>
-      <li class="menuCell"><a class="navLink" href="/not_implemented.html">Your Account</a></li>
+      <li class="menuCellSelected" onclick="navClick('products.html')">T-shirts</li>
+      <li class="menuCell" onclick="navClick('not_implemented.html')">Hoodies</li>
+      <li class="menuCell" onclick="navClick('not_implemented.html')">Create Your Own</li>
+      <li class="menuCell" onclick="navClick('not_implemented.html')">About Us</li>
+      <li class="menuCell" onclick="navClick('not_implemented.html')">Your Account</li>
     </ul>
   </nav>
   <div class="center">
@@ -49,7 +49,8 @@
   </footer>
 
   <!-- Your JS Code -->
-  <script type="module" src="main.js"></script>
+  <script src="main.js"></script>
+  <script src="shirts.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,8 @@
 // NOTE: The variable "shirts" is defined in the shirts.js file as the full list of shirt offerings
 //       You can access this variable here, and should use this variable here to build your webpages
 
-import shirts from "./shirts.js";
-const container = document.querySelector('.imageContainer');
-
 let initProducts = () => {
+    const container = document.querySelector('.imageContainer');
     shirts.forEach(x => {
         let div = document.createElement('div');
         div.classList.add('tshirtContainer');
@@ -33,14 +31,23 @@ let initProducts = () => {
         let buttonQuickView = document.createElement('button');
         buttonQuickView.innerHTML = 'Quick View';
         buttonQuickView.classList.add('buttonItem');
+
         buttons.append(buttonQuickView);
 
         let buttonSeePage = document.createElement('button');
         buttonSeePage.innerHTML = 'See Page';
         buttonSeePage.classList.add('buttonItem');
+        buttonSeePage.addEventListener('click', () => {
+            initDetails(x);
+        });
         buttons.append(buttonSeePage);
 
         div.append(buttons);
+
+        //   div.addEventListener('mouseenter', () => {
+        //       initDetails(x);
+        //   })
+
         container.append(div);
     });
 };
@@ -52,13 +59,12 @@ let countColors = (x) => {
     }
 
     return result;
-}
+};
 
-initProducts();
+let initDetails = (x) => {
+    document.location.href = 'details.html';
+};
 
-let initDetails = () => {
-    // To see the shirts object, run:
-    // console.log(shirts);
-
-    // Your Code Here
+let navClick = (link) => {
+    document.location.href = link;
 };
