@@ -7,7 +7,7 @@ let initProducts = () => {
         let div = document.createElement('div');
         div.classList.add('tshirtContainer');
 
-        let img = new Image();
+        let img = document.createElement('img');
         img.classList.add('imgItem');
         img.src = `${x.colors.white.front}`;
         img.alt = "Image";
@@ -31,7 +31,9 @@ let initProducts = () => {
         let buttonQuickView = document.createElement('button');
         buttonQuickView.innerHTML = 'Quick View';
         buttonQuickView.classList.add('buttonItem');
-
+        buttonQuickView.addEventListener('click', () => {
+            showQuickView(x);
+        });
         buttons.append(buttonQuickView);
 
         let buttonSeePage = document.createElement('button');
@@ -44,10 +46,6 @@ let initProducts = () => {
 
         div.append(buttons);
 
-        //   div.addEventListener('mouseenter', () => {
-        //       initDetails(x);
-        //   })
-
         container.append(div);
     });
 };
@@ -55,6 +53,7 @@ let initProducts = () => {
 let countColors = (x) => {
     let result = 0;
     for (let e in x.colors) {
+
         result++;
     }
 
@@ -62,9 +61,60 @@ let countColors = (x) => {
 };
 
 let initDetails = (x) => {
-    document.location.href = 'details.html';
+    window.location = 'details.html';
 };
 
 let navClick = (link) => {
-    document.location.href = link;
+    window.location = link;
+};
+
+let showQuickView = (x) => {
+    const container = document.querySelector('.quickViewContainer');
+
+    clearQuickView(container);
+
+    let imageContent = document.createElement('div');
+
+    let frontImg = document.createElement('img');
+    frontImg.classList.add('imgQuickView');
+    frontImg.src = `${x.colors.white.front}`;
+    frontImg.alt = "Front View";
+    imageContent.append(frontImg);
+
+    let backImg = document.createElement('img');
+    backImg.classList.add('imgQuickView');
+    backImg.src = `${x.colors.white.back}`;
+    backImg.alt = "Back View";
+    imageContent.append(backImg);
+
+    container.append(imageContent);
+
+    let content = document.createElement('div');
+
+    let tShirtName = document.createElement('p');
+    tShirtName.classList.add('name');
+    tShirtName.innerHTML = `${x.name}`;
+
+    let price = document.createElement('p');
+    price.classList.add('price');
+    price.innerHTML = `${x.price}`;
+
+    let button = document.createElement('button');
+    button.innerHTML = 'Close';
+    button.classList.add('button');
+    button.addEventListener('click', () => {
+        clearQuickView(container);
+    });
+
+    content.append(tShirtName);
+    content.append(price);
+    content.append(button);
+
+    container.append(content);
+};
+
+let clearQuickView = (container) => {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
 };

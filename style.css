@@ -119,9 +119,8 @@ h3{
 }
 
 .menuCell:hover{
-    transition: 0.2s linear;  
-    background-color: var(--mainSelectedColor);
-    color:white;
+    transition: 0.1s linear;  
+    color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -210,6 +209,45 @@ h3{
 
 .navLinkSelected{
     color: white;
+}
+
+.quickViewContainer{
+    position: fixed;
+    display: flex;
+    bottom: 0; left: 0;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    background-color: var(--additionalColor);
+    padding-left: 100px;
+}
+
+.imgQuickView{
+    margin: 20px 0;
+    width: 200px;
+}
+
+.name{
+    margin-top: 20px;
+    color: var(--mainColor);
+    font-size: 30px;
+}
+
+.price{
+    color: var(--mainColor);
+    margin-top: 20px;
+    margin-bottom: 113px;
+    font-size: 20px;
+}
+
+.button{
+    font-size: 20px;
+    color: white;
+    background-color: var(--mainColor);
+    border-radius: 10px;    
+    width: 150px;
+    height: 50px;
+    margin-bottom: 0px;
 }
 
 body{
