@@ -54,6 +54,15 @@ function subscribe() {
         }
     });
 
+    element.addEventListener('touchstart', (e) => {
+        mouse = false;
+        switch (e.touches.length) {
+            case 2:
+                cancel();
+                break;
+        }
+    });
+
     targets.forEach(element => {
 
         // clicks -------------------------------------------------
@@ -92,11 +101,6 @@ function subscribe() {
                         clickTimer = null;
                         captureElement(element, e.touches[0]);
                     }
-                    break;
-                case 2:
-                    cancel();
-                    break;
-                case 3:
                     break;
             }
         });
