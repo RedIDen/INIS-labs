@@ -6,6 +6,7 @@ let captured = null;
 let moved = false;
 let escaped = false;
 let dbclicked = false;
+let mouse = true;
 
 let deltaX;
 let deltaY;
@@ -24,7 +25,9 @@ function subscribe() {
     });
 
     document.addEventListener('mousemove', (e) => {
-        moveElement(e);
+        if (mouse) {
+            moveElement(e);
+        }
     });
 
     document.addEventListener('mouseup', () => {
@@ -71,6 +74,7 @@ function subscribe() {
         // touches --------------------------------------------------
 
         element.addEventListener('touchstart', (e) => {
+            mouse = false;
             switch (e.touches.length) {
                 case 1:
                     if (clickTimer == null) {
