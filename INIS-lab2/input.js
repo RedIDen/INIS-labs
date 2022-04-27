@@ -7,7 +7,7 @@ let resized = null;
 let moved = false;
 let escaped = false;
 let dbclicked = false;
-let dbtaped = false;
+let dbtapped = false;
 let mouse = true;
 
 let deltaX;
@@ -49,7 +49,7 @@ function subscribe() {
     document.addEventListener('touchmove', (e) => {
         resize(e);
 
-        if (!dbtaped) {
+        if (!dbtapped) {
             moveElement(e.touches[0]);
         }
         else {
@@ -100,7 +100,7 @@ function subscribe() {
                             clickTimer = null;
                         }, 200)
 
-                        dbtaped = false;
+                        dbtapped = false;
                         moved = false;
                         if (captured == null) {
                             downElement(element, e.touches[0]);
@@ -115,7 +115,9 @@ function subscribe() {
                     break;
                 case 2:
                     if (clickTimer != null) {
-                        dbtaped = true;
+                        clearTimeout(clickTimer);
+                        clickTimer = null;
+                        dbtapped = true;
                         resized = element;
                         resize(e);
                         e.stopPropagation();
@@ -123,7 +125,7 @@ function subscribe() {
                     break;
                 case 3:
                     if (clickTimer != null) {
-                        dbtaped = true;
+                        dbtapped = true;
                         e.stopPropagation();
                     }
                     break;
