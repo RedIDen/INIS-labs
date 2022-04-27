@@ -211,10 +211,7 @@ function cancel() {
 
 function resize(e) {
 
-    captured.style.left = (e.touches[0].clientX + deltaX) + 'px';
-    captured.style.top = (e.touches[1].clientY + deltaY) + 'px';
-
-    let width = Math.abs(e.touches[0].clientX, e.touches[1].clientX);
+    let width = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     let koef = width / captured.style.width;
 
     captured.style.width = captured.style.width * koef + 'px';
