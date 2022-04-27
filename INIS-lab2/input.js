@@ -141,6 +141,7 @@ function subscribe() {
                         touchElement(element, e);
                     }
 
+                    resized = null;
                     break;
             }
         });
