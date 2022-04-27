@@ -72,16 +72,6 @@ function subscribe() {
             case 2:
                 cancel();
                 break;
-            case 3:
-                dbtapped = false;
-                resized.style.width = startWidth + 'px';
-                resized.style.height = startHeight + 'px';
-
-                resized.style.left = startX + 'px';
-                resized.style.top = startY + 'px';
-                resized = null;
-
-                break;
         }
     });
 
@@ -138,6 +128,16 @@ function subscribe() {
                         startHeight = element.style.height;
                         e.stopPropagation();
                     }
+                    break;
+                case 3:
+                    dbtapped = false;
+                    resized.style.width = startWidth + 'px';
+                    resized.style.height = startHeight + 'px';
+
+                    resized.style.left = startX + 'px';
+                    resized.style.top = startY + 'px';
+                    resized = null;
+
                     break;
             }
         });
