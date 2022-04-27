@@ -138,7 +138,10 @@ function subscribe() {
                         captured = null;
                     }
 
-                    touchElement(element, e);
+                    if (!dbtapped) {
+                        touchElement(element, e);
+                    }
+
                     break;
             }
         });
