@@ -214,8 +214,8 @@ function resize(e) {
     captured.style.left = (e.touches[0].clientX + deltaX) + 'px';
     captured.style.top = (e.touches[1].clientY + deltaY) + 'px';
 
-    // let width = Math.abs(e.touches[0].clientX, e.touches[1].clientX);
-    // let koef = width / resized.style.width;
+    let width = Math.abs(e.touches[0].clientX, e.touches[1].clientX);
+    let koef = width / captured.style.width;
 
-    // resized.style.width = resized.style.width * koef + 'px';
+    captured.style.width = captured.style.width * koef + 'px';
 }
