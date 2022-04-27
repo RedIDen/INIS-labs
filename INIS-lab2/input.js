@@ -75,7 +75,7 @@ function subscribe() {
             case 3:
                 resized.style.width = startWidth + 'px';
                 resized.style.height = startHeight + 'px';
-
+                resized.classList.add('selected')
                 resized.style.left = startX + 'px';
                 resized.style.top = startY + 'px';
                 resized = null;
