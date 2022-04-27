@@ -214,5 +214,5 @@ function resize(e) {
     let width = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     let koef = width / captured.style.width;
 
-    captured.style.width = captured.style.width * koef + 'px';
+    captured.style.width = width + 'px';
 }
