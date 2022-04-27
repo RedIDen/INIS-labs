@@ -131,8 +131,8 @@ function subscribe() {
                         resized = element;
                         startX = element.offsetLeft;
                         startY = element.offsetTop;
-                        startWidth = element.width;
-                        startHeight = element.height;
+                        startWidth = element.offsetWidth;
+                        startHeight = element.offsetHeight;
                         e.stopPropagation();
                     }
                     break;
@@ -164,8 +164,6 @@ subscribe();
 function captureElement(element, e) {
     startX = element.offsetLeft;
     startY = element.offsetTop;
-    startWidth = element.width;
-    startHeight = element.height;
     deltaX = element.offsetLeft - e.clientX;
     deltaY = element.offsetTop - e.clientY;
     captured = element;
