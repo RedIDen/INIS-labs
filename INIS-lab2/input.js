@@ -1,3 +1,5 @@
+const minWidth = 20;
+const minHeight = 20;
 
 let targets = document.querySelectorAll('.target');
 let selected = null;
@@ -15,6 +17,9 @@ let deltaY;
 
 let startX;
 let startY;
+
+let startWidth;
+let startHeight;
 
 let clickTimer = null;
 
@@ -117,14 +122,21 @@ function subscribe() {
                         clickTimer = null;
                         dbtapped = true;
                         resized = element;
+                        startX = element.offsetLeft;
+                        startY = element.offsetTop;
+                        startWidth = element.style.width;
+                        startHeight = element.style.height;
                         e.stopPropagation();
                     }
                     break;
                 case 3:
-                    if (clickTimer != null) {
-                        dbtapped = true;
-                        e.stopPropagation();
-                    }
+                    dbtapped = false;
+                    resized = null;
+                    resized.style.width = startWidth + 'px';
+                    resized.style.height = startHeight + 'px';
+
+                    resized.style.left = startX + 'px';
+                    resized.style.top = startY + 'px';
                     break;
             }
         });
@@ -212,8 +224,8 @@ function resize(e) {
     let width = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     let height = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
 
-    resized.style.width = width + 'px';
-    resized.style.height = height + 'px';
+    resized.style.width = Math.max(width, minWidth) + 'px';
+    resized.style.height = Math.max(height, minHeight) + 'px';
 
     resized.style.left = Math.min(e.touches[0].clientX, e.touches[1].clientX) + 'px';
     resized.style.top = Math.min(e.touches[0].clientY, e.touches[1].clientY) + 'px';
