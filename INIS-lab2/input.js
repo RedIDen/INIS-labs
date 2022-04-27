@@ -2,10 +2,12 @@
 let targets = document.querySelectorAll('.target');
 let selected = null;
 let captured = null;
+let resized = null;
 
 let moved = false;
 let escaped = false;
 let dbclicked = false;
+let dbtaped = false;
 let mouse = true;
 
 let deltaX;
@@ -45,7 +47,12 @@ function subscribe() {
     // touches -----------------------------------------------
 
     document.addEventListener('touchmove', (e) => {
-        moveElement(e.touches[0]);
+        if (!dbtaped) {
+            moveElement(e.touches[0]);
+        }
+        else {
+            resize(e);
+        }
     });
 
     document.addEventListener('touchend', () => {
@@ -89,18 +96,47 @@ function subscribe() {
                     if (clickTimer == null) {
                         clickTimer = setTimeout(function () {
                             clickTimer = null;
-                        }, 500)
+                        }, 200)
 
+                        dbtaped = false;
                         moved = false;
                         if (captured == null) {
-                            touchElement(element, e);
+                            downElement(element, e.touches[0]);
                         }
                     }
                     else {
                         clearTimeout(clickTimer);
                         clickTimer = null;
                         captureElement(element, e.touches[0]);
+                        dbclicked = true;
                     }
+                    break;
+                case 2:
+                    if (clickTimer != null) {
+                        dbtaped = true;
+                        resized = element;
+                        resize(e);
+                        e.stopPropagation();
+                    }
+                    break;
+                case 3:
+                    if (clickTimer != null) {
+                        dbtaped = true;
+                        e.stopPropagation();
+                    }
+                    break;
+            }
+        });
+
+        element.addEventListener('touchend', (e) => {
+            mouse = false;
+            switch (e.touches.length) {
+                case 0:
+                    if (captured != null && !dbclicked) {
+                        captured = null;
+                    }
+
+                    touchElement(element, e);
                     break;
             }
         });
@@ -146,6 +182,7 @@ function downElement(element, e) {
     if (captured == null) {
         captureElement(element, e);
         moved = false;
+        dbclicked = false;
     }
 }
 
@@ -164,4 +201,12 @@ function cancel() {
         captured.style.top = startY + 'px';
         captured = null;
     }
+}
+
+function resize(e) {
+    let width = Math.abs(e.touches[0].clientX, e.touches[1].clientX);
+    let koef = width / resized.style.width;
+
+    resized.style.height *= koef;
+    resized.style.width *= koef;
 }
