@@ -117,6 +117,7 @@ function subscribe() {
                         clickTimer = null;
                         dbtapped = true;
                         resized = element;
+                        touchElement(element, e);
                         resize(e);
                         e.stopPropagation();
                     }
