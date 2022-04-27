@@ -132,8 +132,8 @@ function subscribe() {
                         resized = element;
                         startX = element.offsetLeft;
                         startY = element.offsetTop;
-                        startWidth = element.style.width;
-                        startHeight = element.style.height;
+                        startWidth = element.width;
+                        startHeight = element.height;
                         e.stopPropagation();
                     }
                     break;
