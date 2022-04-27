@@ -210,9 +210,9 @@ function cancel() {
 }
 
 function resize(e) {
-
     let width = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
-    let koef = width / captured.style.width;
+    let height = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
 
     captured.style.width = width + 'px';
+    captured.style.height = height + 'px';
 }
