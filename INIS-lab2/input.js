@@ -75,7 +75,6 @@ function subscribe() {
             case 3:
                 resized.style.width = startWidth + 'px';
                 resized.style.height = startHeight + 'px';
-                resized.classList.add('selected')
                 resized.style.left = startX + 'px';
                 resized.style.top = startY + 'px';
                 resized = null;
@@ -165,6 +164,8 @@ subscribe();
 function captureElement(element, e) {
     startX = element.offsetLeft;
     startY = element.offsetTop;
+    startWidth = element.width;
+    startHeight = element.height;
     deltaX = element.offsetLeft - e.clientX;
     deltaY = element.offsetTop - e.clientY;
     captured = element;
