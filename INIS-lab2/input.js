@@ -47,8 +47,6 @@ function subscribe() {
     // touches -----------------------------------------------
 
     document.addEventListener('touchmove', (e) => {
-        resize(e);
-
         if (!dbtapped) {
             moveElement(e.touches[0]);
         }
