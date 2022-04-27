@@ -215,4 +215,8 @@ function resize(e) {
 
     captured.style.width = width + 'px';
     captured.style.height = height + 'px';
+
+    captured.style.left = Math.min(e.touches[0].clientX, e.touches[1].clientX) + 'px';
+    captured.style.top = Math.max(e.touches[0].clientY, e.touches[1].clientY) + 'px';
+
 }
