@@ -179,7 +179,7 @@ function touchElement(element, e) {
         selected.classList.add('selected');
     }
 
-    e.stopPropagation(); // to awoid firing document.onclick
+    e.stopPropagation();
 }
 
 function touchBackgroung() {
@@ -202,7 +202,6 @@ function downElement(element, e) {
 }
 
 function moveElement(e) {
-    console.log("move")
     if (captured != null) {
         captured.style.left = (e.clientX + deltaX) + 'px';
         captured.style.top = (e.clientY + deltaY) + 'px';
