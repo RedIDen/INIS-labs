@@ -54,7 +54,7 @@ function subscribe() {
         }
     });
 
-    element.addEventListener('touchstart', (e) => {
+    document.addEventListener('touchstart', (e) => {
         mouse = false;
         switch (e.touches.length) {
             case 2:
