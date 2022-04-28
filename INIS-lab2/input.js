@@ -1,7 +1,8 @@
-const minWidth = 20;
-const minHeight = 20;
+const minWidth = 50;
+const minHeight = 50;
 
-let targets = document.querySelectorAll('.target');
+const targets = document.querySelectorAll('.target');
+
 let selected = null;
 let captured = null;
 let resized = null;
@@ -21,7 +22,7 @@ let startY;
 let startWidth;
 let startHeight;
 
-let clickTimer = null;
+let tapTimer = null;
 
 function subscribe() {
 
@@ -105,9 +106,9 @@ function subscribe() {
             mouse = false;
             switch (e.touches.length) {
                 case 1:
-                    if (clickTimer == null) {
-                        clickTimer = setTimeout(function () {
-                            clickTimer = null;
+                    if (tapTimer == null) {
+                        tapTimer = setTimeout(function () {
+                            tapTimer = null;
                         }, 200)
 
                         dbtapped = false;
@@ -117,16 +118,16 @@ function subscribe() {
                         }
                     }
                     else {
-                        clearTimeout(clickTimer);
-                        clickTimer = null;
+                        clearTimeout(tapTimer);
+                        tapTimer = null;
                         captureElement(element, e.touches[0]);
                         dbclicked = true;
                     }
                     break;
                 case 2:
-                    if (clickTimer != null) {
-                        clearTimeout(clickTimer);
-                        clickTimer = null;
+                    if (tapTimer != null) {
+                        clearTimeout(tapTimer);
+                        tapTimer = null;
                         dbtapped = true;
                         resized = element;
                         startX = element.offsetLeft;
