@@ -1,4 +1,5 @@
 const shapeButtons = document.querySelectorAll('.shapeBtn');
+const colorButtons = document.querySelectorAll('.colorBtn');
 const clearButton = document.querySelector('.clearBtn');
 const menu = document.querySelector('.menu');
 const svg = document.querySelector('svg');
@@ -12,19 +13,25 @@ let shape;
 
 var x;
 var y;
+var color = "red";
 
-// Shape buttons
 shapeButtons.forEach(x => x.addEventListener('click', () => {
     if (selectedButton != x) {
+        selectedButton.style.backgroundColor = "gainsboro";
         selectedButton.classList.remove('selectedBtn');
         x.classList.add('selectedBtn');
+        x.style.backgroundColor = color;
         selectedButton = x;
         indexOfShape = Array.prototype.indexOf.call(shapeButtons, x);
-        //  console.log(indexOfShape);
     }
 }));
 
-// Clear button
+colorButtons.forEach(x => x.addEventListener('click', () => {
+    color = x.style.backgroundColor;
+    selectedButton.style.backgroundColor = color;
+    console.log(color);
+}));
+
 clearButton.addEventListener('click', () => {
     let child = svg.lastElementChild;
     while (child) {
@@ -42,14 +49,14 @@ svg.addEventListener('mousedown', (e) => {
             shape = document.createElementNS(svgns, "circle");
             shape.setAttribute("cx", e.clientX - menu.clientWidth);
             shape.setAttribute("cy", e.clientY);
-            shape.setAttribute("fill", "red");
+            shape.setAttribute("fill", color);
             svg.appendChild(shape);
             break;
         case 1: // rectangle
             shape = document.createElementNS(svgns, "rect");
             shape.setAttribute("x", e.clientX - menu.clientWidth);
             shape.setAttribute("y", e.clientY);
-            shape.setAttribute("fill", "red");
+            shape.setAttribute("fill", color);
             svg.appendChild(shape);
             break;
     }
@@ -78,12 +85,15 @@ svg.addEventListener('mousemove', (e) => {
                     shape.setAttribute("y", e.clientY);
                     shape.setAttribute("height", y - e.clientY);
                 }
-
                 break;
         }
     }
 })
 
 svg.addEventListener('mouseup', () => {
+    drawing = false;
+})
+
+svg.addEventListener('mouseleave', () => {
     drawing = false;
 })

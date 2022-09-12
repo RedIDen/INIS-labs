@@ -41,6 +41,12 @@ body {
   background-color: gainsboro;
 }
 
+.colorBtn {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+}
+
 .clearBtn {
   margin: 10px;
   width: 125px;
@@ -49,7 +55,7 @@ body {
 }
 
 .selectedBtn {
-  background-color: rgb(169, 169, 169);
+  background-color: red;
 }
 
 img {
