@@ -46,7 +46,7 @@ svg.addEventListener('mousedown', (e) => {
     y = e.clientY;
     switch (indexOfShape) {
         case 0: // circle
-            shape = document.createElementNS(svgns, "circle");
+            shape = document.createElementNS(svgns, "ellipse");
             shape.setAttribute("cx", e.clientX - menu.clientWidth);
             shape.setAttribute("cy", e.clientY);
             shape.setAttribute("fill", color);
@@ -66,10 +66,27 @@ svg.addEventListener('mousemove', (e) => {
     if (drawing) {
         switch (indexOfShape) {
             case 0: // circle
-                let radius = Math.max(e.clientX - x, e.clientY - y) / 2;
-                shape.setAttribute("cx", x + radius - menu.clientWidth);
-                shape.setAttribute("cy", y + radius);
-                shape.setAttribute("r", radius);
+                let radiusX = (e.clientX - x) / 2;
+                let radiusY = (e.clientY - y) / 2;
+                // shape.setAttribute("cx", x + radius - menu.clientWidth);
+                // shape.setAttribute("cy", y + radius);
+                // shape.setAttribute("r", radius);
+                if (e.clientX > x) {
+                    shape.setAttribute("rx", radiusX);
+                    shape.setAttribute("cx", x + radiusX - menu.clientWidth);
+                } else {
+                    shape.setAttribute("rx", -radiusX);
+                    shape.setAttribute("cx", x + radiusX - menu.clientWidth);
+                }
+
+                if (e.clientY > y) {
+                    shape.setAttribute("ry", radiusY);
+                    shape.setAttribute("cy", y + radiusY);
+                } else {
+                    shape.setAttribute("ry", -radiusY);
+                    shape.setAttribute("cy", y + radiusY);
+                }
+                break;
                 break;
             case 1: // rectangle
                 if (e.clientX > x) {
